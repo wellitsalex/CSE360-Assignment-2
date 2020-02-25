@@ -31,17 +31,33 @@ public class SimpleList {
 	
 	/*
 	 * Adds an element 'x' to the list and shifts existing up. 
+	 * If list is full the size of list is increased by 50%
 	 * 
 	 * @param  x  an element to be added to the list
 	 */
 	public void add(int x) {
 		
-		//if list is full shift elements over 1
+		//if list is full increase list
 		if(count == list.length) {
-			for(int i = count - 2; i >= 0; i--) {
+			
+			int newSize = ((int)(list.length * .5)) + list.length;
+			//temporary array to hold list while resizing 
+			int[] hold = new int[newSize];
+			//pushing elements from list into hold
+			for(int i = 0; i < list.length; i++) {
+				hold[i] = list[i];
+			}
+			//resize list
+			list = new int[newSize];
+			list = hold;
+			
+			for(int i = count - 1; i >= 0; i--) {
 				list[i + 1] = list[i];
 			}
+			
 			list[0] = x;
+			count++;
+			
 		} else {
 			//moving all elements in list the the right one position
 			for(int i = count - 1; i >= 0; i--) {
@@ -57,7 +73,8 @@ public class SimpleList {
 	
 	/*
 	 * Removes an element 'x' from the list and shifts existing elements down.
-	 * if element does not exist, nothing is done.
+	 * if element does not exist, nothing is done. if an element is removed and
+	 * the list has more than 25% empty places then the list is decreased by 25%.
 	 * 
 	 * @param  x  the element to be removed
 	 */
@@ -71,9 +88,23 @@ public class SimpleList {
 				    list[j] = list[j + 1];
 				  }
 				count--;
-				//decrement i to account for consecutive duplicates
+				//exit the loop
 				i = list.length; //FIXED TEST ID 11 FAIL
 			}
+		}
+		
+		//checking if there are more than 25% empty spaces 
+		if((list.length - count) > (int)(list.length *.25)) {
+			int newSize = list.length - ((int)(list.length * .25));
+			//temporary array to hold list while resizing 
+			int[] hold = new int[newSize];
+			//pushing elements from list into hold
+			for(int i = 0; i < hold.length; i++) {
+				hold[i] = list[i];
+			}
+			//resize list
+			list = new int[newSize];
+			list = hold;
 		}
 	}
 	
@@ -129,5 +160,5 @@ public class SimpleList {
 		
 		return -1;
 	}
-	
+
 }
