@@ -211,6 +211,7 @@ public class SimpleList {
 	 * 
 	 */
 	public int size() {
+		
 		return list.length - count;
 	}
 
