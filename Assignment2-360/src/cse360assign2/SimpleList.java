@@ -205,7 +205,7 @@ public class SimpleList {
 	}
 	
 	/*
-	 * Returns the current number of possible locations in list
+	 * Returns the current number of possible locations in list.
 	 * 
 	 * @return an integer, number of possible locations in list.
 	 * 
