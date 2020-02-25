@@ -194,7 +194,7 @@ public class SimpleList {
 	}
 	
 	/*
-	 * Returns the first element within list
+	 * Returns the first element within list.
 	 * 
 	 * @return an integer, the first element in list.
 	 * 
