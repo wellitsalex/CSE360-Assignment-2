@@ -73,7 +73,7 @@ public class SimpleList {
 	
 	/*
 	 * Removes an element 'x' from the list and shifts existing elements down.
-	 * if element does not exist, nothing is done. if an element is removed and
+	 * if element does not exist, nothing is done. if remove() is called and
 	 * the list has more than 25% empty places then the list is decreased by 25%.
 	 * 
 	 * @param  x  the element to be removed
@@ -159,6 +159,59 @@ public class SimpleList {
 		}
 		
 		return -1;
+	}
+	
+	/*
+	 * appends the parameter x to the end of the list, if list is full 
+	 * the size will be increased by 50% so there will be room.
+	 * 
+	 * @param  x  the element to be appended
+	 */
+	public void append(int x) {
+		
+		if(count == list.length) {
+			
+			int newSize = ((int)(list.length * .5)) + list.length;
+			//temporary array to hold list while resizing 
+			int[] hold = new int[newSize];
+			//pushing elements from list into hold
+			for(int i = 0; i < list.length; i++) {
+				hold[i] = list[i];
+			}
+			//resize list
+			list = new int[newSize];
+			list = hold;
+			
+			//put element at end of list
+			list[count] = x;
+			count++;
+			
+		} else {
+			
+			list[count] = x;
+			count++;
+		}
+	}
+	
+	/*
+	 * Returns the first element within list
+	 * 
+	 * @return an integer, the first element in list.
+	 * 
+	 */
+	public int first() {
+		
+		return list[0];
+	}
+	
+	/*
+	 * Returns the current number of possible locations in list
+	 * 
+	 * @return an integer, number of possible locations in list.
+	 * 
+	 */
+	public int size() {
+		return list.length - count;
 	}
 
 }
