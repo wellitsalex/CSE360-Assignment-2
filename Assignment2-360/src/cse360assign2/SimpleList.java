@@ -201,7 +201,27 @@ public class SimpleList {
 	 */
 	public int first() {
 		
-		return list[0];
+		if(count == 0) {
+			return -1;
+		} else {
+			return list[0];
+		}
+		
+	}
+	
+	/*
+	 * Returns the last element within list. if list is empty returns -1
+	 * 
+	 * @return an integer, the last element in list.
+	 * 
+	 */
+	public int last() {
+		
+		if(count == 0) {
+			return -1;
+		} else {
+			return list[count-1];
+		}
 	}
 	
 	/*
