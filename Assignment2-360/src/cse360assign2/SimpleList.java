@@ -94,7 +94,7 @@ public class SimpleList {
 		}
 		
 		//checking if there are more than 25% empty spaces 
-		if((list.length - count) > (int)(list.length *.25)) {
+		if((list.length - count) > (int)(list.length *.25) && list.length > 1) {
 			int newSize = list.length - ((int)(list.length * .25));
 			//temporary array to hold list while resizing 
 			int[] hold = new int[newSize];
